@@ -1,0 +1,535 @@
+{
+ "updated": "2026-11-22",
+ "categories": [
+  {
+   "id": "comedy",
+   "emoji": "😂",
+   "name": "웃김·병맛·코믹",
+   "short": "코믹",
+   "desc": "상황극·리액션·장난 짤",
+   "color": "#ffd166"
+  },
+  {
+   "id": "chase",
+   "emoji": "🏃",
+   "name": "긴박·추격·킹받음",
+   "short": "긴박",
+   "desc": "사건 터지는 전개·추격",
+   "color": "#ff6b6b"
+  },
+  {
+   "id": "daily",
+   "emoji": "☕",
+   "name": "일상·힐링·동물",
+   "short": "힐링",
+   "desc": "브이로그·반려동물·감성",
+   "color": "#7ee0b8"
+  },
+  {
+   "id": "drama",
+   "emoji": "⚡",
+   "name": "반전·드라마틱·호러",
+   "short": "반전",
+   "desc": "반전·캐릭터 등장·공포",
+   "color": "#a78bfa"
+  },
+  {
+   "id": "shopping",
+   "emoji": "🛒",
+   "name": "신나는·쇼핑·리뷰",
+   "short": "신남",
+   "desc": "언박싱·리뷰·정보 전달",
+   "color": "#4fc3f7"
+  }
+ ],
+ "tracks": [
+  {
+   "id": "01-attic-secrets",
+   "no": 1,
+   "title": "Attic Secrets",
+   "titleKo": "다락방의 비밀",
+   "composer": "Rafael Krux",
+   "category": "comedy",
+   "bpm": 130,
+   "duration": 66.35,
+   "size": 2981663,
+   "bitrate": 359510,
+   "tags": [
+    "병맛",
+    "미스터리",
+    "장난"
+   ],
+   "use": "상황극 오프닝·리액션 짤",
+   "desc": "다락방 문이 삐걱 열리는 순간의 장난기. 병맛 상황극 도입부에 잘 붙는다.",
+   "file": "assets/bgm/01-attic-secrets.mp3",
+   "freePdPath": "comedy/Attic Secrets.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "02-holiday-weasel",
+   "no": 2,
+   "title": "Holiday Weasel",
+   "titleKo": "홀리데이 위즐",
+   "composer": "Kevin MacLeod",
+   "category": "comedy",
+   "bpm": 145,
+   "duration": 85.0,
+   "size": 3534858,
+   "bitrate": 332682,
+   "tags": [
+    "축제",
+    "경쾌",
+    "코믹"
+   ],
+   "use": "축제·사고 장면·코믹 전개",
+   "desc": "경쾌한 리듬으로 사고 치는 족제비. 텐션 올라가는 코믹 장면에.",
+   "file": "assets/bgm/02-holiday-weasel.mp3",
+   "freePdPath": "comedy/Holiday Weasel.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "03-monsters-in-hotel",
+   "no": 3,
+   "title": "Monsters in Hotel",
+   "titleKo": "호텔의 괴물들",
+   "composer": "Rafael Krux",
+   "category": "comedy",
+   "bpm": 150,
+   "duration": 125.68,
+   "size": 5027004,
+   "bitrate": 320000,
+   "tags": [
+    "핼러윈",
+    "으스스",
+    "코믹"
+   ],
+   "use": "핼러윈·괴상한 상황·리액션",
+   "desc": "괴물들이 호텔에 투숙했다. 으스스한데 웃긴 핼러윈 파티 분위기.",
+   "file": "assets/bgm/03-monsters-in-hotel.mp3",
+   "freePdPath": "comedy/Monsters in Hotel.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "04-night-in-the-castle",
+   "no": 4,
+   "title": "Night in the Castle",
+   "titleKo": "성의 밤",
+   "composer": "Kevin MacLeod",
+   "category": "comedy",
+   "bpm": 140,
+   "duration": 189.07,
+   "size": 7567068,
+   "bitrate": 320173,
+   "tags": [
+    "다크코미디",
+    "서스펜스",
+    "마법"
+   ],
+   "use": "다크 코미디·수상한 장면",
+   "desc": "성에서 약을 끓이는 마법사. 가벼운 서스펜스를 두른 다크 코미디.",
+   "file": "assets/bgm/04-night-in-the-castle.mp3",
+   "freePdPath": "comedy/Night in the Castle.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "05-bar-brawl",
+   "no": 5,
+   "title": "Bar Brawl",
+   "titleKo": "선술집 난투",
+   "composer": "Bryan Teoh",
+   "category": "chase",
+   "bpm": 190,
+   "duration": 122.59,
+   "size": 2454107,
+   "bitrate": 160147,
+   "tags": [
+    "질주",
+    "켈트",
+    "텐션"
+   ],
+   "use": "빠른 전개·몸싸움·킹받는 순간",
+   "desc": "켈트 언덕을 달리는 듯한 질주. 선술집 난투극 같은 텐션.",
+   "file": "assets/bgm/05-bar-brawl.mp3",
+   "freePdPath": "upbeat/Bar Brawl.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "06-beginning-of-conflict",
+   "no": 6,
+   "title": "Beginning of Conflict",
+   "titleKo": "갈등의 시작",
+   "composer": "Rafael Krux",
+   "category": "chase",
+   "bpm": 120,
+   "duration": 99.37,
+   "size": 3977016,
+   "bitrate": 320179,
+   "tags": [
+    "긴장",
+    "추진력",
+    "레트로"
+   ],
+   "use": "사건 발생·고조 구간",
+   "desc": "레트로한 플롯 로켓. 일이 터지는 순간을 밀어붙이는 추진력.",
+   "file": "assets/bgm/06-beginning-of-conflict.mp3",
+   "freePdPath": "scoring/Beginning of Conflict.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "07-desert-fox",
+   "no": 7,
+   "title": "Desert Fox",
+   "titleKo": "사막의 여우",
+   "composer": "Rafael Krux",
+   "category": "chase",
+   "bpm": 120,
+   "duration": 133.22,
+   "size": 5328980,
+   "bitrate": 320000,
+   "tags": [
+    "미스터리",
+    "이국적",
+    "추격"
+   ],
+   "use": "잠복·추격·긴장 장면",
+   "desc": "중동 풍 멜로디의 미스터리한 트랙. 추격전이나 잠복 장면에 어울린다.",
+   "file": "assets/bgm/07-desert-fox.mp3",
+   "freePdPath": "scoring/Desert Fox.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "08-stunted-adventure",
+   "no": 8,
+   "title": "Stunted Adventure",
+   "titleKo": "어설픈 모험",
+   "composer": "Bryan Teoh",
+   "category": "chase",
+   "bpm": 135,
+   "duration": 70.13,
+   "size": 1404835,
+   "bitrate": 160259,
+   "tags": [
+    "발랄",
+    "전개",
+    "모험"
+   ],
+   "use": "킹받는 전개·빠른 편집",
+   "desc": "발랄하고 들뜬 모험의 시작. 뭔가 벌어질 것 같은 킹받는 흐름.",
+   "file": "assets/bgm/08-stunted-adventure.mp3",
+   "freePdPath": "scoring/Stunted Adventure.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "09-river-meditation",
+   "no": 9,
+   "title": "River Meditation",
+   "titleKo": "강가의 명상",
+   "composer": "Jason Shaw",
+   "category": "daily",
+   "bpm": 90,
+   "duration": 167.07,
+   "size": 2677213,
+   "bitrate": 128196,
+   "tags": [
+    "잔잔",
+    "명상",
+    "자연"
+   ],
+   "use": "동물·자연 브이로그",
+   "desc": "강물 위로 흐르는 잔잔한 명상. 반려동물·일상 브이로그 배경에.",
+   "file": "assets/bgm/09-river-meditation.mp3",
+   "freePdPath": "misc/River Meditation.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "10-goldcrest",
+   "no": 10,
+   "title": "Goldcrest",
+   "titleKo": "골드크레스트",
+   "composer": "James Anderson",
+   "category": "daily",
+   "bpm": 140,
+   "duration": 142.27,
+   "size": 3424810,
+   "bitrate": 192578,
+   "tags": [
+    "포근",
+    "관악",
+    "아침"
+   ],
+   "use": "아침·산책·따뜻한 장면",
+   "desc": "관악 밴드의 포근한 선율. 아침이나 산책, 반려동물 영상에.",
+   "file": "assets/bgm/10-goldcrest.mp3",
+   "freePdPath": "misc/Goldcrest.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "11-amazing-grace",
+   "no": 11,
+   "title": "Amazing Grace",
+   "titleKo": "어메이징 그레이스",
+   "composer": "Kevin MacLeod",
+   "category": "daily",
+   "bpm": 90,
+   "duration": 114.47,
+   "size": 1833601,
+   "bitrate": 128146,
+   "tags": [
+    "감동",
+    "차분",
+    "찬송가"
+   ],
+   "use": "감동 엔딩·마무리 내레이션",
+   "desc": "색소폰으로 연주한 익숙한 선율. 차분하게 감동을 남기는 마무리.",
+   "file": "assets/bgm/11-amazing-grace.mp3",
+   "freePdPath": "romantic/Amazing Grace.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "12-neptunian-princess",
+   "no": 12,
+   "title": "Neptunian Princess",
+   "titleKo": "해왕성의 공주",
+   "composer": "Bryan Teoh",
+   "category": "daily",
+   "bpm": 100,
+   "duration": 125.45,
+   "size": 2511236,
+   "bitrate": 160145,
+   "tags": [
+    "몽환",
+    "재즈",
+    "느와르"
+   ],
+   "use": "꿈결 같은 장면·무드 전환",
+   "desc": "50년대 느와르풍의 몽환적인 재즈. 꿈결 같은 장면에 깔기 좋다.",
+   "file": "assets/bgm/12-neptunian-princess.mp3",
+   "freePdPath": "misc/Neptunian Princess.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "13-dreams-of-vain",
+   "no": 13,
+   "title": "Dreams of Vain",
+   "titleKo": "헛된 꿈",
+   "composer": "Rafael Krux",
+   "category": "drama",
+   "bpm": 100,
+   "duration": 96.81,
+   "size": 3874609,
+   "bitrate": 320183,
+   "tags": [
+    "캐릭터",
+    "드라마",
+    "테마"
+   ],
+   "use": "캐릭터 소개·등장 씬",
+   "desc": "주인공이 등장하는 순간을 위한 테마. 인물 소개에 힘을 실어준다.",
+   "file": "assets/bgm/13-dreams-of-vain.mp3",
+   "freePdPath": "scoring/Dreams of Vain.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "14-hidden-truth",
+   "no": 14,
+   "title": "Hidden Truth",
+   "titleKo": "숨겨진 진실",
+   "composer": "Rafael Krux",
+   "category": "drama",
+   "bpm": 110,
+   "duration": 98.8,
+   "size": 3954019,
+   "bitrate": 320179,
+   "tags": [
+    "서사",
+    "반전",
+    "현악"
+   ],
+   "use": "반전 직전·무게감 있는 전환",
+   "desc": "미래의 슬픔이 스며든 긴 현악. 반전 직전의 무게감을 만든다.",
+   "file": "assets/bgm/14-hidden-truth.mp3",
+   "freePdPath": "horror/Hidden Truth.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "15-black-knight",
+   "no": 15,
+   "title": "Black Knight",
+   "titleKo": "흑기사",
+   "composer": "Rafael Krux",
+   "category": "drama",
+   "bpm": 180,
+   "duration": 142.12,
+   "size": 6012552,
+   "bitrate": 338454,
+   "tags": [
+    "에픽",
+    "웅장",
+    "기사"
+   ],
+   "use": "웅장한 오프닝·각성 씬",
+   "desc": "오늘 아침, 우리는 달린다. 묵직하지만 어딘가 느긋한 에픽.",
+   "file": "assets/bgm/15-black-knight.mp3",
+   "freePdPath": "epic/Black Knight.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "16-big-eyes",
+   "no": 16,
+   "title": "Big Eyes",
+   "titleKo": "커다란 눈",
+   "composer": "Rafael Krux",
+   "category": "drama",
+   "bpm": 110,
+   "duration": 149.08,
+   "size": 5963233,
+   "bitrate": 320000,
+   "tags": [
+    "호러",
+    "공포",
+    "우주"
+   ],
+   "use": "공포 반전·등골 서늘한 장면",
+   "desc": "어둠 속에서 무언가 나를 본다. 우주적 공포의 등골 서늘함.",
+   "file": "assets/bgm/16-big-eyes.mp3",
+   "freePdPath": "epic/Big Eyes.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "17-stereotype-news",
+   "no": 17,
+   "title": "Stereotype News",
+   "titleKo": "옛날 뉴스",
+   "composer": "Rafael Krux",
+   "category": "shopping",
+   "bpm": 130,
+   "duration": 65.67,
+   "size": 2629082,
+   "bitrate": 320268,
+   "tags": [
+    "뉴스",
+    "인트로",
+    "정보"
+   ],
+   "use": "리뷰 인트로·정보 전달",
+   "desc": "옛 뉴스가 신나던 시절의 테마. 리뷰·정보 영상 인트로에.",
+   "file": "assets/bgm/17-stereotype-news.mp3",
+   "freePdPath": "upbeat/Stereotype News.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "18-inventing-flight",
+   "no": 18,
+   "title": "Inventing Flight",
+   "titleKo": "비행의 시작",
+   "composer": "Bryan Teoh",
+   "category": "shopping",
+   "bpm": 145,
+   "duration": 141.89,
+   "size": 2840034,
+   "bitrate": 160128,
+   "tags": [
+    "벅참",
+    "발견",
+    "리뷰"
+   ],
+   "use": "신제품 공개·언박싱 오프닝",
+   "desc": "처음 하늘로 뜨는 순간의 벅참. 신제품 소개나 언박싱 오프닝에.",
+   "file": "assets/bgm/18-inventing-flight.mp3",
+   "freePdPath": "upbeat/Inventing Flight.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "19-celebration",
+   "no": 19,
+   "title": "Celebration",
+   "titleKo": "축하",
+   "composer": "Alexander Nakarada",
+   "category": "shopping",
+   "bpm": 120,
+   "duration": 143.05,
+   "size": 5210589,
+   "bitrate": 291406,
+   "tags": [
+    "축하",
+    "밝음",
+    "성과"
+   ],
+   "use": "성과 공유·이벤트 마무리",
+   "desc": "축하할 일이 생겼을 때. 언박싱이나 성과 공유에 어울리는 밝은 곡.",
+   "file": "assets/bgm/19-celebration.mp3",
+   "freePdPath": "misc/Celebration.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  },
+  {
+   "id": "20-energizing",
+   "no": 20,
+   "title": "Energizing",
+   "titleKo": "활력 충전",
+   "composer": "Kevin MacLeod",
+   "category": "shopping",
+   "bpm": 90,
+   "duration": 133.38,
+   "size": 3040798,
+   "bitrate": 182382,
+   "tags": [
+    "활력",
+    "아침",
+    "쇼핑"
+   ],
+   "use": "빠른 템포 리뷰·하루 시작",
+   "desc": "아침을 깨우는 활력. 템포 빠른 쇼핑·리뷰 영상에.",
+   "file": "assets/bgm/20-energizing.mp3",
+   "freePdPath": "misc/Energizing.mp3",
+   "license": "CC0 1.0 (Public Domain)",
+   "source": "https://archive.org/details/freepd"
+  }
+ ],
+ "totalSize": 76247307,
+ "totalDuration": 2411.47,
+ "zips": {
+  "all": {
+   "path": "zips/shorts-bgm-box-all.zip",
+   "size": 76253809
+  },
+  "comedy": {
+   "path": "zips/comedy.zip",
+   "size": 19111759
+  },
+  "chase": {
+   "path": "zips/chase.zip",
+   "size": 13166071
+  },
+  "daily": {
+   "path": "zips/daily.zip",
+   "size": 10448003
+  },
+  "drama": {
+   "path": "zips/drama.zip",
+   "size": 19805521
+  },
+  "shopping": {
+   "path": "zips/shopping.zip",
+   "size": 13721652
+  }
+ }
+}

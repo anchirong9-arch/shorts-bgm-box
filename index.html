@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>쇼츠 브금 박스 · CC0 무료 BGM 20곡 (쇼츠·틱톡·릴스)</title>
+<meta name="description" content="유튜브 쇼츠·틱톡·인스타 릴스에 바로 쓰는 CC0(퍼블릭 도메인) 무료 BGM 20곡. 카테고리·검색·바로 재생·MP3 원클릭 다운로드·전체 ZIP 다운로드. 상업적 이용과 수익 창출 가능.">
+<meta name="theme-color" content="#0b0d12">
+<meta property="og:title" content="쇼츠 브금 박스 · CC0 무료 BGM 20곡">
+<meta property="og:description" content="저작권 걱정 없이 쇼츠·릴스에 바로 쓰는 CC0 무료 BGM 20곡 모음. 검색·미리듣기·MP3 다운로드.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">🎵</span>
+      <div>
+        <h1>쇼츠 브금 박스</h1>
+        <p class="tagline">저작권 걱정 없이 바로 쓰는 <strong>CC0 무료 BGM</strong> · 쇼츠 · 틱톡 · 릴스</p>
+      </div>
+    </div>
+    <div class="stats" id="stats" aria-live="polite"></div>
+    <div class="hero-actions">
+      <a class="btn primary" id="zipAll" href="zips/shorts-bgm-box-all.zip" download>
+        <span aria-hidden="true">⬇</span> 전체 ZIP 받기
+      </a>
+      <a class="btn ghost" href="#license">이용 규칙</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="toolbar" aria-label="검색과 필터">
+    <div class="search">
+      <span class="search-ico" aria-hidden="true">🔍</span>
+      <input id="q" type="search" placeholder="곡 이름 · 분위기 · 작곡가 · 추천 용도로 검색" autocomplete="off" aria-label="검색">
+      <button id="clear" type="button" aria-label="검색어 지우기" hidden>✕</button>
+    </div>
+    <div class="chips" id="chips" role="tablist" aria-label="카테고리"></div>
+  </section>
+
+  <div class="resultbar">
+    <div class="result-left">
+      <span id="count" class="count"></span>
+      <a id="zipCat" class="zip-cat" href="#" download hidden></a>
+    </div>
+    <label class="sort">
+      <span>정렬</span>
+      <select id="sort">
+        <option value="default">추천 순</option>
+        <option value="short">짧은 곡 순</option>
+        <option value="long">긴 곡 순</option>
+        <option value="bpm-asc">BPM 낮은 순</option>
+        <option value="bpm-desc">BPM 높은 순</option>
+      </select>
+    </label>
+  </div>
+
+  <section id="grid" class="grid" aria-label="BGM 목록"></section>
+  <p id="empty" class="empty" hidden>조건에 맞는 곡이 없어요. 검색어나 카테고리를 바꿔 보세요.</p>
+
+  <section class="license" id="license">
+    <h2>이용 규칙 — 그냥 써도 되는 곡들</h2>
+    <div class="license-grid">
+      <div class="license-card ok">
+        <h3>✅ 해도 되는 것</h3>
+        <ul>
+          <li>유튜브 쇼츠 · 틱톡 · 인스타 릴스 · 블로그 · 광고 영상에 사용</li>
+          <li>상업적 이용, 유튜브 수익 창출(광고 붙이기), 편집·리믹스</li>
+          <li>출처 표기 없이 사용 (표시해도 좋아요)</li>
+        </ul>
+      </div>
+      <div class="license-card warn">
+        <h3>ℹ️ 알아 둘 것</h3>
+        <ul>
+          <li>모든 곡은 <strong>CC0 1.0 (퍼블릭 도메인)</strong> — 원저작자가 저작권을 포기한 상태예요.</li>
+          <li>원본 출처는 <a href="https://archive.org/details/freepd" target="_blank" rel="noopener">FreePD.com 아카이브</a>(CC0 표기)이고, 이 저장소에는 원본 MP3를 그대로 담았습니다.</li>
+          <li>플랫폼의 <em>음원 저작권 자동 감지</em>가 간혹 오탐할 수 있어요. 그럴 땐 이 페이지의 곡 정보를 근거로 이의를 제기하면 됩니다.</li>
+          <li>CC0는 ‘표기 의무 없음’이지 ‘표기 금지’가 아니에요. 작곡가 이름을 남겨 주면 더 좋습니다.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="credits">
+    <h2>곡별 출처 · 저작권</h2>
+    <p class="credits-note">전곡 FreePD.com (CC0) 원본이며, 아래 이름으로 검색하면 원본 페이지를 확인할 수 있어요.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>곡</th><th>작곡가</th><th>원본 경로</th><th>라이선스</th></tr></thead>
+        <tbody id="creditsBody"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>쇼츠 브금 박스 · <a href="https://github.com/anchirong9-arch/shorts-bgm-box" target="_blank" rel="noopener">GitHub 저장소</a> · 음원 CC0 1.0 Public Domain</p>
+</footer>
+
+<div class="player" id="player" aria-label="오디오 플레이어">
+  <button id="pp" class="pp" type="button" aria-label="재생">▶</button>
+  <div class="now">
+    <div class="now-top">
+      <span id="nowTitle">곡을 선택하세요</span>
+      <span id="nowMeta" class="now-meta"></span>
+    </div>
+    <div class="seek-row">
+      <span id="cur" class="time">0:00</span>
+      <input id="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="재생 위치">
+      <span id="dur" class="time">0:00</span>
+    </div>
+  </div>
+  <div class="player-actions">
+    <button id="prev" type="button" aria-label="이전 곡" title="이전 곡">⏮</button>
+    <button id="next" type="button" aria-label="다음 곡" title="다음 곡">⏭</button>
+    <button id="repeat" type="button" aria-label="한 곡 반복" title="한 곡 반복" aria-pressed="false">🔁</button>
+    <a id="dlCur" class="dl" href="#" download aria-label="현재 곡 MP3 다운로드" title="현재 곡 다운로드">⬇</a>
+  </div>
+</div>
+
+<audio id="audio" preload="metadata"></audio>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

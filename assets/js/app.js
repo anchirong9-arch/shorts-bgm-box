@@ -27,6 +27,110 @@
 
   var DATA = null;
   var state = { cat: 'all', q: '', sort: 'default', list: [], currentId: null, repeatOne: false };
+  var zipping = false;
+
+  /* ---------- zip (store 방식, 의존성 없음) ---------- */
+  var CRC_TABLE = (function () {
+    var t = new Uint32Array(256);
+    for (var n = 0; n < 256; n++) {
+      var c = n;
+      for (var k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+      t[n] = c >>> 0;
+    }
+    return t;
+  })();
+  function crc32(buf) {
+    var c = 0xFFFFFFFF;
+    for (var i = 0; i < buf.length; i++) c = CRC_TABLE[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  function zipPath(t) {
+    var folder = { comedy: '01-comedy', chase: '02-chase', daily: '03-daily', drama: '04-drama', shopping: '05-shopping' }[t.category] || 'etc';
+    var n = (t.no < 10 ? '0' : '') + t.no;
+    return folder + '/' + n + ' ' + t.title + ' - ' + t.composer + ' (CC0).mp3';
+  }
+  function makeZip(tracks, onProgress) {
+    var enc = new TextEncoder();
+    var parts = [];
+    var central = [];
+    var offset = 0;
+    var chain = Promise.resolve();
+    tracks.forEach(function (t, i) {
+      chain = chain.then(function () {
+        if (onProgress) onProgress(i, tracks.length, t);
+        return fetch(t.file).then(function (r) {
+          if (!r.ok) throw new Error(t.title + ' 내려받기 실패');
+          return r.arrayBuffer();
+        }).then(function (ab) {
+          var data = new Uint8Array(ab);
+          var name = enc.encode(zipPath(t));
+          var crc = crc32(data);
+          var lh = new Uint8Array(30 + name.length);
+          var dv = new DataView(lh.buffer);
+          dv.setUint32(0, 0x04034b50, true);
+          dv.setUint16(4, 20, true);
+          dv.setUint16(6, 0x0800, true);
+          dv.setUint16(8, 0, true);
+          dv.setUint16(10, 0, true);
+          dv.setUint16(12, 0x21, true);
+          dv.setUint32(14, crc, true);
+          dv.setUint32(18, data.length, true);
+          dv.setUint32(22, data.length, true);
+          dv.setUint16(26, name.length, true);
+          dv.setUint16(28, 0, true);
+          lh.set(name, 30);
+          parts.push(lh, data);
+
+          var cd = new Uint8Array(46 + name.length);
+          var cv = new DataView(cd.buffer);
+          cv.setUint32(0, 0x02014b50, true);
+          cv.setUint16(4, 20, true);
+          cv.setUint16(6, 20, true);
+          cv.setUint16(8, 0x0800, true);
+          cv.setUint16(10, 0, true);
+          cv.setUint16(12, 0, true);
+          cv.setUint16(14, 0x21, true);
+          cv.setUint32(16, crc, true);
+          cv.setUint32(20, data.length, true);
+          cv.setUint32(24, data.length, true);
+          cv.setUint16(28, name.length, true);
+          cv.setUint16(30, 0, true);
+          cv.setUint16(32, 0, true);
+          cv.setUint16(34, 0, true);
+          cv.setUint16(36, 0, true);
+          cv.setUint32(38, 0, true);
+          cv.setUint32(42, offset, true);
+          cd.set(name, 46);
+          central.push(cd);
+
+          offset += lh.length + data.length;
+        });
+      });
+    });
+    return chain.then(function () {
+      var cdSize = central.reduce(function (a, b) { return a + b.length; }, 0);
+      var end = new Uint8Array(22);
+      var ev = new DataView(end.buffer);
+      ev.setUint32(0, 0x06054b50, true);
+      ev.setUint16(4, 0, true);
+      ev.setUint16(6, 0, true);
+      ev.setUint16(8, tracks.length, true);
+      ev.setUint16(10, tracks.length, true);
+      ev.setUint32(12, cdSize, true);
+      ev.setUint32(16, offset, true);
+      ev.setUint16(20, 0, true);
+      return new Blob(parts.concat(central, [end]), { type: 'application/zip' });
+    });
+  }
+  function saveBlob(blob, name) {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 30000);
+  }
 
   /* ---------- utils ---------- */
   function fmtTime(sec) {
@@ -35,7 +139,7 @@
     return m + ':' + (s < 10 ? '0' : '') + s;
   }
   function fmtSize(bytes) {
-    return (bytes / (1024 * 1024)).toFixed(1) + 'MB';
+    return (bytes / 1000000).toFixed(1) + 'MB';
   }
   function dlName(t) {
     return t.title + ' - ' + t.composer + ' (CC0).mp3';
@@ -280,6 +384,33 @@
     if (e.code === 'Space') { e.preventDefault(); ppBtn.click(); }
   });
 
+  /* ---------- 전체 ZIP ---------- */
+  function wireZipButton() {
+    var btn = document.getElementById('zipAll');
+    if (!btn || !DATA) return;
+    btn.title = '전체 ' + DATA.tracks.length + '곡 · ' + fmtSize(DATA.totalSize) + ' ZIP (브라우저에서 생성)';
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (zipping) return;
+      zipping = true;
+      var label = btn.innerHTML;
+      btn.setAttribute('aria-busy', 'true');
+      btn.classList.add('busy');
+      makeZip(DATA.tracks, function (i, n, t) {
+        btn.textContent = 'ZIP 만드는 중… ' + (i + 1) + '/' + n + ' (' + t.title + ')';
+      }).then(function (blob) {
+        saveBlob(blob, '쇼츠 브금 박스 - CC0 BGM 20곡.zip');
+        btn.innerHTML = '✅ ZIP 저장됨 (' + fmtSize(blob.size) + ')';
+        setTimeout(function () { btn.innerHTML = label; btn.classList.remove('busy'); btn.removeAttribute('aria-busy'); }, 5000);
+      }).catch(function (err) {
+        btn.innerHTML = '⚠ 다시 시도';
+        btn.classList.remove('busy');
+        btn.removeAttribute('aria-busy');
+        alert('ZIP을 만들지 못했어요: ' + (err && err.message ? err.message : err) + '\n카테고리별 ZIP을 이용해 주세요.');
+      }).then(function () { zipping = false; });
+    });
+  }
+
   /* ---------- boot ---------- */
   fetch('assets/data/tracks.json', { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error('데이터를 불러오지 못했습니다'); return r.json(); })
@@ -289,8 +420,7 @@
       renderStats();
       renderGrid();
       renderCredits();
-      var zipEl = document.getElementById('zipAll');
-      if (zipEl) zipEl.title = '전체 ' + DATA.tracks.length + '곡 · ' + fmtSize(DATA.totalSize) + ' ZIP';
+      wireZipButton();
     })
     .catch(function (err) {
       grid.innerHTML = '<p class="empty">' + (err && err.message ? err.message : '오류') + '</p>';

@@ -153,3 +153,9 @@ footer{max-width:var(--max);margin:0 auto;padding:26px 20px 10px;color:#6f7a8c;f
   .player-actions{width:auto}
   .now{order:3;flex-basis:100%}
 }
+
+/* hero note */
+.hero-actions{flex-direction:column;align-items:flex-end;gap:6px}
+.hero-buttons{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.hero-note{margin:0;font-size:11.5px;color:#7f8a9c;text-align:right}
+@media (max-width:640px){.hero-actions{align-items:flex-start}.hero-note{text-align:left}}

@@ -507,10 +507,6 @@
  "totalSize": 76247307,
  "totalDuration": 2411.47,
  "zips": {
-  "all": {
-   "path": "zips/shorts-bgm-box-all.zip",
-   "size": 76253809
-  },
   "comedy": {
    "path": "zips/comedy.zip",
    "size": 19111759

@@ -1211,7 +1211,7 @@
   ];
 
   var USER_CATS = [
-    { id: 'meme', name: '유행·스트리머 대사', emoji: '🔥', short: '유행·대사', color: '#ff6b6b' },
+    { id: 'clip', name: '유행·스트리머 대사', emoji: '🔥', short: '유행·대사', color: '#ff6b6b' },
     { id: 'cute', name: '귀여운', emoji: '🐰', short: '귀여운', color: '#7ee0b8' },
     { id: 'edit', name: '유용한 (편집 기본)', emoji: '🛠', short: '유용한', color: '#4fc3f7' },
     { id: 'fun', name: '예능·웃긴', emoji: '🤣', short: '예능', color: '#ffd166' },

@@ -270,7 +270,7 @@
       '<div class="card-foot">' +
         '<span class="lic">' + lic + '</span>' +
         '<div class="row">' +
-          '<button type="button" class="dl-btn sm" data-act="dl">⬇ WAV</button>' +
+          '<button type="button" class="dl-btn sm" data-act="dl">' + (isUser ? '⬇ 원본' : '⬇ WAV') + '</button>' +
           (manage ? '<button type="button" class="dl-btn sm" data-act="del" title="삭제">🗑</button>' : '') +
         '</div>' +
       '</div>' +
@@ -589,6 +589,13 @@
   function refreshClips() {
     return dbAll().then(function (rows) {
       clips = rows.sort(function (a, b) { return (b.added || 0) - (a.added || 0); });
+      // 예전 버전에서 'meme'로 저장된 사용자 클립을 'clip'으로 옮김
+      clips.forEach(function (r) {
+        if (r.cat === 'meme' && (r.src === 'upload' || r.src === 'extract')) {
+          r.cat = 'clip';
+          dbPut(r).catch(function () { });
+        }
+      });
       return clips;
     });
   }
@@ -871,6 +878,18 @@
     $('xStart').max = xtrack.buf.duration.toFixed(2);
     $('xEnd').max = xtrack.buf.duration.toFixed(2);
     $('xLen').textContent = (xsel.b - xsel.a).toFixed(2) + '초';
+    syncAutoName();
+  }
+
+  function syncAutoName() {
+    if (!xtrack) return;
+    var el = $('xName');
+    var base = (xtrack.file.name || 'clip').replace(/\.[^.]+$/, '');
+    var auto = base + ' ' + (xsel.b - xsel.a).toFixed(1) + 's';
+    if (!el.value || el.getAttribute('data-auto') === '1') {
+      el.value = auto;
+      el.setAttribute('data-auto', '1');
+    }
   }
 
   xcanvas.addEventListener('pointerdown', function (ev) {
@@ -1011,6 +1030,10 @@
     return fn + ' ' + xsel.a.toFixed(1) + '-' + xsel.b.toFixed(1) + 's';
   }
 
+  $('xName').addEventListener('input', function () {
+    this.setAttribute('data-auto', '0');
+  });
+
   $('xSave').addEventListener('click', function () {
     if (!xtrack) return;
     var clip = buildClip();
@@ -1027,6 +1050,7 @@
       renderSfx(); renderMine();
       toast('내 소리함에 저장했어요 — 🔥 유행·스트리머 대사에서 확인');
       $('xName').value = '';
+      $('xName').setAttribute('data-auto', '1');
     }).catch(function (e) {
       console.error(e);
       toast('저장하지 못했어요 (저장 공간 부족?)', 'err');
@@ -1054,7 +1078,8 @@
       xtrack = { file: file, buf: buf };
       xsel.a = 0;
       xsel.b = buf.duration;
-      $('xName').value = (file.name || 'clip').replace(/\.[^.]+$/, '') + ' ' + buf.duration.toFixed(1) + 's';
+      $('xName').value = '';
+      $('xName').setAttribute('data-auto', '1');
       $('xInfo').innerHTML =
         '<span class="pill">파일 <b>' + esc(file.name) + '</b></span>' +
         '<span class="pill">길이 <b>' + buf.duration.toFixed(2) + '초</b></span>' +

@@ -177,6 +177,10 @@
     var b = e.target.closest('.tab');
     if (b) setTab(b.getAttribute('data-tab'));
   });
+  window.addEventListener('hashchange', function () {
+    var h = (location.hash || '').replace('#', '');
+    if (['bgm', 'sfx', 'mine', 'extract'].indexOf(h) !== -1 && document.body.getAttribute('data-tab') !== h) setTab(h);
+  });
 
   /* =======================================================
      효과음 탭
@@ -917,8 +921,9 @@
     xcanvas.addEventListener(ev, function () {
       if (!dragMode) return;
       dragMode = null;
-      if (xsel.b - xsel.a < 0.02) { // 너무 짧으면 최소 0.1초 확보
-        xsel.b = Math.min(xtrack.buf.duration, xsel.a + 0.1);
+      if (xsel.b - xsel.a < 0.05) { // 너무 짧으면 그 지점부터 0.15초 확보
+        xsel.b = Math.min(xtrack.buf.duration, xsel.a + 0.15);
+        if (xsel.b - xsel.a < 0.05) xsel.a = Math.max(0, xsel.b - 0.15);
       }
       updateSelLabels();
       drawWave();

@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>쇼츠 브금 박스 · CC0 무료 BGM 20곡 (쇼츠·틱톡·릴스)</title>
-<meta name="description" content="유튜브 쇼츠·틱톡·인스타 릴스에 바로 쓰는 CC0(퍼블릭 도메인) 무료 BGM 20곡. 카테고리·검색·바로 재생·MP3 원클릭 다운로드·전체 ZIP 다운로드. 상업적 이용과 수익 창출 가능.">
+<title>쇼츠 브금 박스 · CC0 무료 BGM 20곡 + 효과음 89종 + 영상 소리 추출기</title>
+<meta name="description" content="유튜브 쇼츠·틱톡·릴스에 바로 쓰는 CC0 무료 BGM 20곡과 직접 합성한 무료 효과음 89종. 내 효과음 추가(IndexedDB 저장·백업), 영상에서 소리만 뽑아 구간 자르기까지 브라우저에서 무료로.">
 <meta name="theme-color" content="#0b0d12">
-<meta property="og:title" content="쇼츠 브금 박스 · CC0 무료 BGM 20곡">
-<meta property="og:description" content="저작권 걱정 없이 쇼츠·릴스에 바로 쓰는 CC0 무료 BGM 20곡 모음. 검색·미리듣기·MP3 다운로드.">
+<meta property="og:title" content="쇼츠 브금 박스 · 무료 BGM 20곡 + 효과음 89종 + 영상 소리 추출">
+<meta property="og:description" content="CC0 무료 BGM 20곡, 직접 합성한 효과음 89종, 내 효과음 추가·백업, 영상 소리 추출·구간 자르기까지 한 페이지에서.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
-<link rel="stylesheet" href="assets/css/style.css?v=2">
+<link rel="stylesheet" href="assets/css/style.css?v=3">
 </head>
-<body>
+<body data-tab="bgm">
 
 <header class="hero">
   <div class="hero-inner">
@@ -20,92 +20,215 @@
       <span class="logo" aria-hidden="true">🎵</span>
       <div>
         <h1>쇼츠 브금 박스</h1>
-        <p class="tagline">저작권 걱정 없이 바로 쓰는 <strong>CC0 무료 BGM</strong> · 쇼츠 · 틱톡 · 릴스</p>
+        <p class="tagline">저작권 걱정 없는 <strong>CC0 BGM 20곡</strong> + 직접 합성한 <strong>무료 효과음</strong> · 영상 소리 추출까지</p>
       </div>
     </div>
     <div class="stats" id="stats" aria-live="polite"></div>
     <div class="hero-actions">
       <div class="hero-buttons">
         <button class="btn primary" id="zipAll" type="button">
-          <span aria-hidden="true">⬇</span> 전체 ZIP 받기
+          <span aria-hidden="true">⬇</span> 브금 전체 ZIP 받기
         </button>
         <a class="btn ghost" href="#license">이용 규칙</a>
       </div>
-      <p class="hero-note">전체 ZIP(약 76MB)은 브라우저에서 만들어집니다 · Wi-Fi 권장</p>
+      <p class="hero-note">브금 ZIP(약 76MB)은 브라우저에서 만들어집니다 · Wi-Fi 권장</p>
     </div>
   </div>
 </header>
 
-<main>
-  <section class="toolbar" aria-label="검색과 필터">
-    <div class="search">
-      <span class="search-ico" aria-hidden="true">🔍</span>
-      <input id="q" type="search" placeholder="곡 이름 · 분위기 · 작곡가 · 추천 용도로 검색" autocomplete="off" aria-label="검색">
-      <button id="clear" type="button" aria-label="검색어 지우기" hidden>✕</button>
-    </div>
-    <div class="chips" id="chips" role="tablist" aria-label="카테고리"></div>
-  </section>
-
-  <div class="resultbar">
-    <div class="result-left">
-      <span id="count" class="count"></span>
-      <a id="zipCat" class="zip-cat" href="#" download hidden></a>
-    </div>
-    <label class="sort">
-      <span>정렬</span>
-      <select id="sort">
-        <option value="default">추천 순</option>
-        <option value="short">짧은 곡 순</option>
-        <option value="long">긴 곡 순</option>
-        <option value="bpm-asc">BPM 낮은 순</option>
-        <option value="bpm-desc">BPM 높은 순</option>
-      </select>
-    </label>
+<nav class="tabs" id="tabs" role="tablist" aria-label="도구 선택">
+  <div class="tabs-inner">
+    <button class="tab" type="button" role="tab" data-tab="bgm" aria-selected="true">🎵 브금 <span class="n" id="tBgm">20</span></button>
+    <button class="tab" type="button" role="tab" data-tab="sfx" aria-selected="false">✨ 효과음 <span class="n" id="tSfx">0</span></button>
+    <button class="tab" type="button" role="tab" data-tab="mine" aria-selected="false">📁 내 소리함 <span class="n" id="tMine">0</span></button>
+    <button class="tab" type="button" role="tab" data-tab="extract" aria-selected="false">🎬 영상 소리 추출</button>
   </div>
+</nav>
 
-  <section id="grid" class="grid" aria-label="BGM 목록"></section>
-  <p id="empty" class="empty" hidden>조건에 맞는 곡이 없어요. 검색어나 카테고리를 바꿔 보세요.</p>
+<main>
+  <!-- ================= 브금(BGM) ================= -->
+  <section class="pane" id="pane-bgm">
+    <section class="toolbar" aria-label="검색과 필터">
+      <div class="search">
+        <span class="search-ico" aria-hidden="true">🔍</span>
+        <input id="q" type="search" placeholder="곡 이름 · 분위기 · 작곡가 · 추천 용도로 검색" autocomplete="off" aria-label="검색">
+        <button id="clear" type="button" aria-label="검색어 지우기" hidden>✕</button>
+      </div>
+      <div class="chips" id="chips" role="tablist" aria-label="카테고리"></div>
+    </section>
 
-  <section class="license" id="license">
-    <h2>이용 규칙 — 그냥 써도 되는 곡들</h2>
-    <div class="license-grid">
-      <div class="license-card ok">
-        <h3>✅ 해도 되는 것</h3>
-        <ul>
-          <li>유튜브 쇼츠 · 틱톡 · 인스타 릴스 · 블로그 · 광고 영상에 사용</li>
-          <li>상업적 이용, 유튜브 수익 창출(광고 붙이기), 편집·리믹스</li>
-          <li>출처 표기 없이 사용 (표시해도 좋아요)</li>
-        </ul>
+    <div class="resultbar">
+      <div class="result-left">
+        <span id="count" class="count"></span>
+        <a id="zipCat" class="zip-cat" href="#" download hidden></a>
       </div>
-      <div class="license-card warn">
-        <h3>ℹ️ 알아 둘 것</h3>
-        <ul>
-          <li>모든 곡은 <strong>CC0 1.0 (퍼블릭 도메인)</strong> — 원저작자가 저작권을 포기한 상태예요.</li>
-          <li>원본 출처는 <a href="https://archive.org/details/freepd" target="_blank" rel="noopener">FreePD.com 아카이브</a>(CC0 표기)이고, 이 저장소에는 원본 MP3를 그대로 담았습니다.</li>
-          <li>플랫폼의 <em>음원 저작권 자동 감지</em>가 간혹 오탐할 수 있어요. 그럴 땐 이 페이지의 곡 정보를 근거로 이의를 제기하면 됩니다.</li>
-          <li>CC0는 ‘표기 의무 없음’이지 ‘표기 금지’가 아니에요. 작곡가 이름을 남겨 주면 더 좋습니다.</li>
-        </ul>
-      </div>
+      <label class="sort">
+        <span>정렬</span>
+        <select id="sort">
+          <option value="default">추천 순</option>
+          <option value="short">짧은 곡 순</option>
+          <option value="long">긴 곡 순</option>
+          <option value="bpm-asc">BPM 낮은 순</option>
+          <option value="bpm-desc">BPM 높은 순</option>
+        </select>
+      </label>
     </div>
+
+    <section id="grid" class="grid" aria-label="BGM 목록"></section>
+    <p id="empty" class="empty" hidden>조건에 맞는 곡이 없어요. 검색어나 카테고리를 바꿔 보세요.</p>
+
+    <section class="license" id="license">
+      <h2>이용 규칙 — 그냥 써도 되는 곡들</h2>
+      <div class="license-grid">
+        <div class="license-card ok">
+          <h3>✅ 해도 되는 것</h3>
+          <ul>
+            <li>유튜브 쇼츠 · 틱톡 · 인스타 릴스 · 블로그 · 광고 영상에 사용</li>
+            <li>상업적 이용, 유튜브 수익 창출(광고 붙이기), 편집·리믹스</li>
+            <li>출처 표기 없이 사용 (표시해도 좋아요)</li>
+          </ul>
+        </div>
+        <div class="license-card warn">
+          <h3>ℹ️ 알아 둘 것</h3>
+          <ul>
+            <li>모든 곡은 <strong>CC0 1.0 (퍼블릭 도메인)</strong> — 원저작자가 저작권을 포기한 상태예요.</li>
+            <li>원본 출처는 <a href="https://archive.org/details/freepd" target="_blank" rel="noopener">FreePD.com 아카이브</a>(CC0 표기)이고, 이 저장소에는 원본 MP3를 그대로 담았습니다.</li>
+            <li>플랫폼의 <em>음원 저작권 자동 감지</em>가 간혹 오탐할 수 있어요. 그럴 땐 이 페이지의 곡 정보를 근거로 이의를 제기하면 됩니다.</li>
+            <li>CC0는 ‘표기 의무 없음’이지 ‘표기 금지’가 아니에요. 작곡가 이름을 남겨 주면 더 좋습니다.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="credits">
+      <h2>곡별 출처 · 저작권</h2>
+      <p class="credits-note">전곡 FreePD.com (CC0) 원본이며, 아래 이름으로 검색하면 원본 페이지를 확인할 수 있어요.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>곡</th><th>작곡가</th><th>원본 경로</th><th>라이선스</th></tr></thead>
+          <tbody id="creditsBody"></tbody>
+        </table>
+      </div>
+    </section>
   </section>
 
-  <section class="credits">
-    <h2>곡별 출처 · 저작권</h2>
-    <p class="credits-note">전곡 FreePD.com (CC0) 원본이며, 아래 이름으로 검색하면 원본 페이지를 확인할 수 있어요.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>#</th><th>곡</th><th>작곡가</th><th>원본 경로</th><th>라이선스</th></tr></thead>
-        <tbody id="creditsBody"></tbody>
-      </table>
+  <!-- ================= 효과음(SFX) ================= -->
+  <section class="pane" id="pane-sfx" hidden>
+    <section class="toolbar" aria-label="효과음 검색과 필터">
+      <div class="search">
+        <span class="search-ico" aria-hidden="true">🔍</span>
+        <input id="sfxQ" type="search" placeholder="효과음 이름·용도로 검색 (예: 밈, 물약, 전환, 검열)" autocomplete="off" aria-label="효과음 검색">
+        <button id="sfxClear" type="button" aria-label="검색어 지우기" hidden>✕</button>
+      </div>
+      <div class="chips" id="sfxChips" role="tablist" aria-label="효과음 카테고리"></div>
+    </section>
+
+    <div class="resultbar">
+      <div class="result-left">
+        <span id="sfxCount" class="count"></span>
+        <button class="zip-cat" type="button" id="sfxZip">⬇ 효과음 전체 ZIP (WAV)</button>
+      </div>
+      <label class="sort">
+        <span>정렬</span>
+        <select id="sfxSort">
+          <option value="default">추천 순</option>
+          <option value="short">짧은 순</option>
+          <option value="long">긴 순</option>
+          <option value="name">이름 순</option>
+        </select>
+      </label>
     </div>
+
+    <section id="sfxGrid" class="grid sfx-grid" aria-label="효과음 목록"></section>
+    <p id="sfxEmpty" class="empty" hidden>이 카테고리에 소리가 없어요. 🎬 영상 소리 추출이나 📁 내 소리함에서 추가해 보세요.</p>
+
+    <p class="hint">
+      ✳️ 내장 효과음은 이 페이지가 브라우저에서 <b>직접 합성</b>한 소리라 저작권·출처 표기가 필요 없습니다(CC0). <b>⬇ WAV</b>를 누르면 바로 저장되고, 영상 편집 앱에 끌어다 쓰면 됩니다.
+      <br>✳️ 🔥 <b>유행·스트리머 대사</b>는 치현 님이 올린 클립이 여기에 모입니다 — 🎬 영상 소리 추출 탭에서 영상 구간을 저장하면 자동으로 여기에 뜹니다.
+    </p>
+  </section>
+
+  <!-- ================= 내 소리함 ================= -->
+  <section class="pane" id="pane-mine" hidden>
+    <div class="vault-head">
+      <div>
+        <h2 class="vault-title">📁 내 소리함</h2>
+        <p class="vault-sub">올린 파일·추출한 클립은 이 브라우저(IndexedDB)에 저장됩니다. 기기를 바꾸거나 브라우저를 지우기 전에 <b>백업</b>해 두세요.</p>
+      </div>
+      <div class="vault-actions">
+        <button class="btn ghost sm" type="button" id="backupOut">⬇ 백업 내보내기</button>
+        <button class="btn ghost sm" type="button" id="backupIn">⬆ 백업 불러오기</button>
+        <input type="file" id="backupFile" accept="application/json,.json" hidden>
+      </div>
+    </div>
+    <p class="vault-usage" id="vaultUsage"></p>
+
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="효과음 파일 올리기">
+      <input type="file" id="fileIn" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac,.webm" multiple hidden>
+      <p class="drop-main">➕ <b>효과음·브금 파일 올리기</b></p>
+      <p class="drop-sub">MP3 · WAV · OGG · M4A — 여기에 끌어다 놓거나 눌러서 선택 (여러 개 한 번에 OK)</p>
+      <p class="drop-sub dim">영상(MP4·MOV·WebM)에서 소리만 뽑으려면 → 🎬 영상 소리 추출 탭</p>
+    </div>
+
+    <div class="staging" id="staging" hidden></div>
+
+    <section class="toolbar" aria-label="내 소리 검색">
+      <div class="search">
+        <span class="search-ico" aria-hidden="true">🔍</span>
+        <input id="mineQ" type="search" placeholder="내 소리 이름으로 검색" autocomplete="off" aria-label="내 소리 검색">
+      </div>
+      <div class="chips" id="mineChips" role="tablist" aria-label="내 소리 카테고리"></div>
+    </section>
+
+    <section id="mineGrid" class="grid" aria-label="내 소리 목록"></section>
+    <p id="mineEmpty" class="empty" hidden>아직 담긴 소리가 없어요. 위에서 파일을 올리거나, 🎬 영상 소리 추출로 클립을 만들어 보세요.</p>
+  </section>
+
+  <!-- ================= 영상 소리 추출 ================= -->
+  <section class="pane" id="pane-extract" hidden>
+    <div class="drop" id="xDrop" tabindex="0" role="button" aria-label="영상 올리기">
+      <input type="file" id="xFile" accept="video/*,audio/*,.mp4,.mov,.webm,.mkv,.m4v,.mp3,.wav,.m4a,.ogg" hidden>
+      <p class="drop-main">🎬 <b>영상 올리기</b> — MP4 · MOV · WebM</p>
+      <p class="drop-sub">끌어다 놓거나 눌러서 선택 · 소리 있는 영상이면 됩니다 (쇼츠·틱톡·녹화본)</p>
+      <p class="drop-sub dim">브라우저 안에서만 처리되고 서버로 아무것도 보내지 않습니다.</p>
+    </div>
+
+    <div id="xStage" hidden>
+      <div class="xinfo" id="xInfo"></div>
+      <div class="wave-wrap">
+        <canvas id="xWave" height="128" aria-label="파형"></canvas>
+        <div class="wave-tip" id="xTip" hidden></div>
+      </div>
+      <div class="xsel">
+        <label>시작 <input type="number" id="xStart" step="0.05" min="0" value="0"> 초</label>
+        <label>끝 <input type="number" id="xEnd" step="0.05" min="0" value="0"> 초</label>
+        <span class="xlen" id="xLen">0.00초</span>
+        <span class="count" id="xHint">파형을 드래그하면 구간이 잡힙니다</span>
+      </div>
+      <div class="xrow">
+        <button class="btn ghost sm" type="button" id="xPreview">▶ 구간 듣기</button>
+        <button class="btn ghost sm" type="button" id="xPreviewAll">▶ 전체 듣기</button>
+        <button class="btn ghost sm" type="button" id="xReset">↺ 전체 선택</button>
+        <label class="chk"><input type="checkbox" id="xNorm" checked> 볼륨 최대화</label>
+        <label class="chk"><input type="checkbox" id="xFade" checked> 앞뒤 5ms 페이드</label>
+      </div>
+      <div class="xsave">
+        <input id="xName" type="text" placeholder="저장할 이름 (예: 스트리머 대사 3초)">
+        <select id="xCat" aria-label="카테고리"></select>
+        <button class="btn primary sm" type="button" id="xSave">📁 내 소리함에 저장</button>
+        <button class="btn ghost sm" type="button" id="xDownload">⬇ WAV 다운로드</button>
+      </div>
+      <p class="hint">✳️ 영상을 올린 뒤 파형 위를 <b>드래그</b>해 원하는 구간만 잡고, [구간 듣기]로 확인한 다음 저장하세요. 저장한 클립은 🔥 유행·스트리머 대사에 모입니다.</p>
+    </div>
+    <p class="xstatus" id="xStatus"></p>
   </section>
 </main>
 
 <footer>
-  <p>쇼츠 브금 박스 · <a href="https://github.com/anchirong9-arch/shorts-bgm-box" target="_blank" rel="noopener">GitHub 저장소</a> · 음원 CC0 1.0 Public Domain</p>
+  <p>쇼츠 브금 박스 · <a href="https://github.com/anchirong9-arch/shorts-bgm-box" target="_blank" rel="noopener">GitHub 저장소</a> · 음원 CC0 1.0 Public Domain · 효과음 자체 합성(CC0)</p>
 </footer>
 
-<div class="player" id="player" aria-label="오디오 플레이어">
+<div class="player" id="player" hidden aria-label="오디오 플레이어">
   <button id="pp" class="pp" type="button" aria-label="재생">▶</button>
   <div class="now">
     <div class="now-top">
@@ -127,6 +250,8 @@
 </div>
 
 <audio id="audio" preload="metadata"></audio>
-<script src="assets/js/app.js?v=2"></script>
+<script src="assets/js/sfx-lib.js?v=3"></script>
+<script src="assets/js/app.js?v=3"></script>
+<script src="assets/js/sfx-ui.js?v=3"></script>
 </body>
 </html>

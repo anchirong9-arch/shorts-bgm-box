@@ -381,6 +381,7 @@
   document.addEventListener('keydown', function (e) {
     var tag = (e.target.tagName || '').toLowerCase();
     if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
+    if (document.body.getAttribute('data-tab') !== 'bgm') return;
     if (e.code === 'Space') { e.preventDefault(); ppBtn.click(); }
   });
 
